@@ -67,11 +67,11 @@ var intents = new builder.IntentDialog({
 		if(!companyName)
 		{
 			companyName = builder.Prompts.text(session,"What is the Company Name?");
-			url = "https://www.quandl.com/api/v3/datasets.json?query=" + companyName + "&database_code=NSE&per_page=1&page=1&";
+			url = "https://www.quandl.com/api/v3/datasets.json?query=" + companyName+"&per_page=1&page=1&api_key=JuxPaad-318Di1v1zHyM&limit=1";
 		}
 		else{
         session.send('Getting Data for  \'%s\'.', companyName.entity);
-        url = "https://www.quandl.com/api/v3/datasets.json?query=" + companyName.entity + "&per_page=1&page=1";
+        url = "https://www.quandl.com/api/v3/datasets.json?query=" + companyName.entity + "&per_page=1&page=1&api_key=JuxPaad-318Di1v1zHyM&limit=1";
 
 		}
 		var http = require("https");
@@ -104,7 +104,7 @@ var intents = new builder.IntentDialog({
                 console.log("SYM: " + tickername);
                 //  console.log("Time: " + route.legs[0].duration.text);
                 session.send("Price of \'%s\' ", tickername);
-                url1 = "https://www.quandl.com/api/v3/datasets/"+database_code+"/" + tickername + ".json?api_key=3rmf8-xvrxu3XPXPhZHj&limit=1";
+                url1 = "https://www.quandl.com/api/v3/datasets/"+database_code+"/" + tickername + ".json?api_key=JuxPaad-318Di1v1zHyM&limit=1";
                 var request = http.get(url1, function(response) {
                     // data is streamed in chunks from the server
                     // so we have to handle the "data" event    
@@ -132,7 +132,7 @@ var intents = new builder.IntentDialog({
 						if(!data)
 							session.send("Oops!\nThe company is not a part of NSE!!");
 							else
-                        session.send("Price of \'%s\' is \'%s\' ", route.name, route.data[0]['open']);
+                        session.send("Price of \'%s\' is \'%s\' ", route.name, route.data[0][5]);
                     });
                 });
             });
